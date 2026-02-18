@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IrrigationSolution } from '../types.ts';
-import Badge from './Badge.tsx';
+import { IrrigationSolution } from '../../types';
+import Badge from '../common/Badge';
 
 interface Props {
   solution: IrrigationSolution;

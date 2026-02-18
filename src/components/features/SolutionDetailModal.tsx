@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { IrrigationSolution } from '../types.ts';
-import Badge from './Badge.tsx';
+import { IrrigationSolution } from '../../types';
+import Badge from '../common/Badge';
 
 interface Props {
   solution: IrrigationSolution | null;
   onClose: () => void;
 }
 
-const DetailModal: React.FC<Props> = ({ solution, onClose }) => {
+const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
   const [imgError, setImgError] = useState(false);
   const [figureError, setFigureError] = useState(false);
   if (!solution) return null;
@@ -171,4 +171,4 @@ const DetailModal: React.FC<Props> = ({ solution, onClose }) => {
   );
 };
 
-export default DetailModal;
+export default SolutionDetailModal;
