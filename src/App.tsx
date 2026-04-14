@@ -45,7 +45,7 @@ const App: React.FC = () => {
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 transition-colors duration-300">
       <Helmet>
         <title>Water Management Solutions - Open Source Catalog</title>
         <meta name="description" content="A centralized hub for nonproprietary, open-source, and DIY solutions for water management." />

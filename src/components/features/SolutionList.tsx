@@ -28,7 +28,7 @@ const SolutionList: React.FC<SolutionListProps> = ({ solutions, onSelectSolution
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-slate-200">
+        <div className="text-center py-20 bg-white rounded-lg border-2 border-dashed border-slate-200">
           <p className="text-slate-400 text-sm font-bold">No entries match your research criteria.</p>
           <button onClick={onClearFilters} className="mt-4 text-emerald-600 font-bold text-xs uppercase hover:underline">Clear Filters</button>
         </div>
