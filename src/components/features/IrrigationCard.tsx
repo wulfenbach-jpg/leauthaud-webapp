@@ -15,7 +15,7 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
   return (
     <div 
       onClick={onClick}
-      className="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-emerald-500 transition-all cursor-pointer flex flex-col h-full duration-300"
+      className="group bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-xl hover:border-emerald-500 transition-all cursor-pointer flex flex-col h-full duration-300"
     >
       <div className="relative h-48 overflow-hidden bg-slate-100">
         {!imgError ? (
@@ -40,22 +40,22 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
       </div>
       
       <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 line-clamp-2 min-h-[2.5rem] leading-snug">
+        <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-2 line-clamp-2 min-h-[3rem] leading-snug">
           {solution.name}
         </h3>
         
-        <p className="text-[11px] text-slate-500 mb-4 line-clamp-3 leading-relaxed min-h-[3rem] font-medium">
+        <p className="text-sm text-slate-500 mb-4 line-clamp-3 leading-relaxed min-h-[4.5rem] font-medium">
           {solution.shortDescription}
         </p>
 
         <div className="mt-auto pt-4 border-t border-slate-100 space-y-3">
-          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-tight">
+          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-tight">
             <span className="text-slate-400">Scale</span>
             <span className="text-slate-900">{solution.scaleOfUse}</span>
           </div>
           
-          <div className="flex items-center text-[10px] text-emerald-600 font-bold uppercase tracking-widest">
-            <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+          <div className="flex items-center text-xs text-emerald-600 font-bold uppercase tracking-widest">
+            <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
             <span className="truncate">{solution.developer}</span>
           </div>
         </div>

@@ -19,12 +19,12 @@ const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange, onOpenAbou
                 </svg>
              </div>
              <div>
-               <h1 className="text-lg font-extrabold tracking-tight text-slate-900 leading-none">
+               <h1 className="text-xl font-extrabold tracking-tight text-slate-900 leading-none">
                  Open Source and DIY sensing systems for water management
                </h1>
                <div className="flex items-center mt-1.5">
                   <span className="w-2 h-2 rounded-full mr-2 bg-emerald-500 animate-pulse"></span>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-600">
+                  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">
                     Google Sheet Synced
                   </p>
                </div>
@@ -38,9 +38,9 @@ const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange, onOpenAbou
                   placeholder="Search by name/description/etc..."
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 transition-all text-sm font-medium shadow-sm"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:bg-white focus:ring-2 focus:ring-emerald-500/20 transition-all text-base font-medium shadow-sm"
                 />
-                <svg className="absolute left-3.5 top-2.5 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <svg className="absolute left-3.5 top-3 w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
              </div>
 
              <div className="flex items-center gap-2 border-l border-slate-200 pl-3">
