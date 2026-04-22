@@ -91,7 +91,7 @@ const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
                   <div className="flex flex-wrap gap-2">
                      <Badge color="emerald">{solution.typeOfDigitalTechnologies || "N/A"}</Badge>
                      {solution.typeOfIrrigation.map(t => <Badge key={t} color="slate">{t}</Badge>)}
-                     <Badge color="emerald">{solution.typeOfBoard}</Badge>
+                     {solution.typeOfBoard.map(b => <Badge key={b} color="emerald">{b}</Badge>)}
                   </div>
                </div>
 

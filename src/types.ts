@@ -19,7 +19,7 @@ export interface IrrigationSolution {
   links: string[];
   lastUpdate: string;
   documentContent: string;
-  typeOfBoard: string;
+  typeOfBoard: string[];
   priceRange: string;
 }
 

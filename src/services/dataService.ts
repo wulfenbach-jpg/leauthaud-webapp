@@ -90,7 +90,7 @@ export const fetchSheetData = async (): Promise<IrrigationSolution[]> => {
                 links: (row['Link to website(s)'] || '').split(',').map(s => s.trim()).filter(Boolean),
                 lastUpdate: row['Date last update of website'] || '',
                 documentContent: row['Document content'] || '',
-                typeOfBoard: row['Type of board'] || 'Other',
+                typeOfBoard: (row['Type of board'] || 'Other').split(/[\/,]/).map(s => s.trim()).filter(Boolean),
                 priceRange: row['Price range'] || 'Unknown'
               };
             });
