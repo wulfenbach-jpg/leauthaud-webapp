@@ -86,13 +86,23 @@ const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
                   </div>
                </div>
 
-               <div className="p-6 rounded-lg bg-emerald-50 border border-emerald-100">
-                  <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-3">Core Technologies</h4>
-                  <div className="flex flex-wrap gap-2">
-                     <Badge color="emerald">{solution.typeOfDigitalTechnologies || "N/A"}</Badge>
-                     {solution.typeOfIrrigation.map(t => <Badge key={t} color="slate">{t}</Badge>)}
-                     {solution.typeOfBoard.map(b => <Badge key={b} color="emerald">{b}</Badge>)}
+               <div className="p-6 rounded-lg bg-emerald-50 border border-emerald-100 space-y-4">
+                  <div>
+                    <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-3">Core Technologies</h4>
+                    <div className="flex flex-wrap gap-2">
+                       <Badge color="emerald">{solution.typeOfDigitalTechnologies || "N/A"}</Badge>
+                       {solution.typeOfIrrigation.map(t => <Badge key={t} color="slate">{t}</Badge>)}
+                    </div>
                   </div>
+
+                  {solution.typeOfBoard && solution.typeOfBoard.length > 0 && (
+                    <div>
+                      <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-3">Type of Board</h4>
+                      <div className="flex flex-wrap gap-2">
+                         {solution.typeOfBoard.map(b => <Badge key={b} color="emerald">{b}</Badge>)}
+                      </div>
+                    </div>
+                  )}
                </div>
 
                <div className="space-y-3">
@@ -112,7 +122,9 @@ const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
                      </div>
                      <div className="flex justify-between text-sm py-2 border-b border-slate-100">
                         <span className="text-slate-500 font-medium">Price Range</span>
-                        <span className="text-slate-900 font-bold">${solution.priceRange}</span>
+                        <span className="text-slate-900 font-bold">
+                           {solution.priceRange.toLowerCase() === 'other' ? 'N/A' : `$${solution.priceRange}`}
+                        </span>
                      </div>
                   </div>
                </div>
