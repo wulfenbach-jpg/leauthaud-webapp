@@ -20,27 +20,3 @@ If you have a solution to share or have found a bug in the documentation, please
 
 ---
 *Developed by Leauthaud Labs.*
-### Price Range Estimation Tool
-
-This repository includes a standalone Python script to automatically estimate the price range of solutions using Google's Gemini LLM. It analyzes the website links and description to categorize the solution into standard ranges: `0-50`, `50-200`, `200-500`, or `500-1000`.
-
-To use the tool:
-
-1. Setup your python environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r scripts/requirements.txt
-```
-
-2. Get a free Gemini API Key from Google AI Studio and set it in your environment:
-```bash
-export GEMINI_API_KEY="your_api_key_here"
-```
-
-3. Run the script:
-```bash
-python scripts/calculate_prices.py
-```
-
-4. The script will generate a file named `updated_prices.csv`. You can open this file and copy the new `Price range` and `Type of board` columns back into your main Google Sheet.

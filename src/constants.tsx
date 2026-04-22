@@ -26,6 +26,6 @@ export const FILTER_OPTIONS = {
   ],
   documentationType: ['Written', 'Video', 'N/A'],
   documentContent: ['Components', 'Installation/Setup', 'Source Code'],
-  typeOfBoard: ['ESB', 'Arduino', 'Arduino Edge', 'Raspberry Pi', 'Other'],
+  typeOfBoard: ['ESP', 'Arduino', 'Arduino Edge', 'Raspberry Pi', 'Other'],
   priceRange: ['0-50', '50-200', '200-500', '500-1000', 'Unknown']
 };
