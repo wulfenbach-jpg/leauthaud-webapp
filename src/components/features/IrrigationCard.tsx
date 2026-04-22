@@ -37,6 +37,19 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           <Badge color="slate" className="bg-white/90 backdrop-blur-sm shadow-sm">{solution.technologicalAdvancement}</Badge>
         </div>
+
+        {solution.typeOfBoard && solution.typeOfBoard.length > 0 && (
+          <div className="absolute top-3 right-3 flex flex-col items-end group/board">
+            <div className="bg-white/90 backdrop-blur-sm shadow-sm p-1.5 rounded-md cursor-help hover:bg-white transition-colors">
+              <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <div className="absolute top-full mt-2 right-0 opacity-0 group-hover/board:opacity-100 transition-opacity pointer-events-none bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider py-1 px-2 rounded whitespace-nowrap shadow-xl z-10">
+              {solution.typeOfBoard.join(', ')}
+            </div>
+          </div>
+        )}
       </div>
       
       <div className="p-5 flex flex-col flex-grow">
@@ -56,7 +69,9 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
           
           <div className="flex items-center justify-between text-xs font-bold uppercase tracking-tight">
             <span className="text-slate-400">Price</span>
-            <span className="text-emerald-600">${solution.priceRange}</span>
+            <span className="text-emerald-600">
+              {solution.priceRange.toLowerCase() === 'other' ? 'N/A' : `$${solution.priceRange}`}
+            </span>
           </div>
 
           <div className="flex items-center text-xs text-emerald-600 font-bold uppercase tracking-widest">
