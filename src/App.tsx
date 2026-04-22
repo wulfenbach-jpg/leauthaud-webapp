@@ -28,6 +28,8 @@ const App: React.FC = () => {
       if (filters.developer.length > 0 && !filters.developer.includes(solution.developer)) return false;
       if (filters.documentationType.length > 0 && !filters.documentationType.includes(solution.documentationType)) return false;
       if (!matchInString(solution.documentContent, filters.documentContent)) return false;
+      if (filters.typeOfBoard.length > 0 && !filters.typeOfBoard.includes(solution.typeOfBoard)) return false;
+      if (filters.priceRange.length > 0 && !filters.priceRange.includes(solution.priceRange)) return false;
 
       if (filters.searchQuery) {
         const q = filters.searchQuery.toLowerCase();

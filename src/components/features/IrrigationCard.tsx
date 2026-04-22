@@ -54,6 +54,11 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
             <span className="text-slate-900">{solution.scaleOfUse}</span>
           </div>
           
+          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-tight">
+            <span className="text-slate-400">Price</span>
+            <span className="text-emerald-600">${solution.priceRange}</span>
+          </div>
+
           <div className="flex items-center text-xs text-emerald-600 font-bold uppercase tracking-widest">
             <svg className="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
             <span className="truncate">{solution.developer}</span>

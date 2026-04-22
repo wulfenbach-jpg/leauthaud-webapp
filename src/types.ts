@@ -19,6 +19,8 @@ export interface IrrigationSolution {
   links: string[];
   lastUpdate: string;
   documentContent: string;
+  typeOfBoard: string;
+  priceRange: string;
 }
 
 export interface FilterState {
@@ -30,4 +32,6 @@ export interface FilterState {
   developer: string[];
   documentationType: string[];
   documentContent: string[];
+  typeOfBoard: string[];
+  priceRange: string[];
 }
