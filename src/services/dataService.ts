@@ -22,6 +22,8 @@ interface RawCsvRow {
   'Link to website(s)'?: string;
   'Date last update of website'?: string;
   'Document content'?: string;
+  'Type of board'?: string;
+  'Price range'?: string;
 }
 
 const transformDriveUrl = (url: string): string => {
@@ -87,7 +89,9 @@ export const fetchSheetData = async (): Promise<IrrigationSolution[]> => {
                 documentationType: row['Documentation type'] || '',
                 links: (row['Link to website(s)'] || '').split(',').map(s => s.trim()).filter(Boolean),
                 lastUpdate: row['Date last update of website'] || '',
-                documentContent: row['Document content'] || ''
+                documentContent: row['Document content'] || '',
+                typeOfBoard: (row['Type of board'] || 'Other').split(/[\/,]/).map(s => s.trim()).filter(Boolean),
+                priceRange: row['Price range'] || 'Unknown'
               };
             });
           resolve(mappedData);

@@ -17,6 +17,8 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({ filters, onToggleFilter
     { label: 'Developer Class', key: 'developer', options: FILTER_OPTIONS.developer },
     { label: 'Documentation Type', key: 'documentationType', options: FILTER_OPTIONS.documentationType },
     { label: 'Document Content', key: 'documentContent', options: FILTER_OPTIONS.documentContent },
+    { label: 'Type of Board', key: 'typeOfBoard', options: FILTER_OPTIONS.typeOfBoard },
+    { label: 'Price Range', key: 'priceRange', options: FILTER_OPTIONS.priceRange },
   ];
 
   return (

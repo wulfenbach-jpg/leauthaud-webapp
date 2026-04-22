@@ -10,7 +10,9 @@ export const useFilters = () => {
     techAdvancement: [],
     developer: [],
     documentationType: [],
-    documentContent: []
+    documentContent: [],
+    typeOfBoard: [],
+    priceRange: []
   });
 
   const toggleFilter = (category: keyof FilterState, value: string) => {
@@ -33,7 +35,9 @@ export const useFilters = () => {
       techAdvancement: [],
       developer: [],
       documentationType: [],
-      documentContent: []
+      documentContent: [],
+      typeOfBoard: [],
+      priceRange: []
     });
   };
 

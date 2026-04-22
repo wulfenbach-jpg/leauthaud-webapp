@@ -25,5 +25,7 @@ export const FILTER_OPTIONS = {
     'Open-source Community', 'Individual', 'Other'
   ],
   documentationType: ['Written', 'Video', 'N/A'],
-  documentContent: ['Components', 'Installation/Setup', 'Source Code']
+  documentContent: ['Components', 'Installation/Setup', 'Source Code'],
+  typeOfBoard: ['ESP', 'Arduino', 'Arduino Edge', 'Raspberry Pi', 'Other'],
+  priceRange: ['0-50', '50-200', '200-500', '500-1000', 'Unknown']
 };

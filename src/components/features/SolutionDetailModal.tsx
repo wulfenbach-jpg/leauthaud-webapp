@@ -91,6 +91,7 @@ const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
                   <div className="flex flex-wrap gap-2">
                      <Badge color="emerald">{solution.typeOfDigitalTechnologies || "N/A"}</Badge>
                      {solution.typeOfIrrigation.map(t => <Badge key={t} color="slate">{t}</Badge>)}
+                     {solution.typeOfBoard.map(b => <Badge key={b} color="emerald">{b}</Badge>)}
                   </div>
                </div>
 
@@ -108,6 +109,10 @@ const SolutionDetailModal: React.FC<Props> = ({ solution, onClose }) => {
                      <div className="flex justify-between text-sm py-2 border-b border-slate-100">
                         <span className="text-slate-500 font-medium">Documentation</span>
                         <span className="text-slate-900 font-bold">{solution.documentationType}</span>
+                     </div>
+                     <div className="flex justify-between text-sm py-2 border-b border-slate-100">
+                        <span className="text-slate-500 font-medium">Price Range</span>
+                        <span className="text-slate-900 font-bold">${solution.priceRange}</span>
                      </div>
                   </div>
                </div>
