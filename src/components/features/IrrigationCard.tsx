@@ -21,7 +21,7 @@ const IrrigationCard: React.FC<Props> = ({ solution, onClick }) => {
         {!imgError ? (
           <img 
             src={displayPhoto} 
-			referrerPolicy="no-referrer"
+            referrerPolicy="no-referrer"
             alt={solution.name}
             onError={() => setImgError(true)}
             loading="lazy"

@@ -1,4 +1,3 @@
-
 import { IrrigationSolution } from './types';
 
 /**

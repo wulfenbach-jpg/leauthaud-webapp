@@ -9,6 +9,7 @@ import SidebarFilters from './components/features/SidebarFilters';
 import SolutionList from './components/features/SolutionList';
 import SolutionDetailModal from './components/features/SolutionDetailModal';
 import AboutModal from './components/features/AboutModal';
+import GoogleAnalytics from './components/common/GoogleAnalytics';
 import { useIrrigationData } from './hooks/useIrrigationData';
 import { useFilters } from './hooks/useFilters';
 import { matchInString, matchInArray } from './utils/filterUtils';
@@ -48,6 +49,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 transition-colors duration-300">
+      <GoogleAnalytics />
       <Helmet>
         <title>Water Management Solutions - Open Source Catalog</title>
         <meta name="description" content="A centralized hub for nonproprietary, open-source, and DIY solutions for water management." />
