@@ -18,15 +18,9 @@ const Header: React.FC<HeaderProps> = ({ searchQuery, onSearchChange }) => {
                 </svg>
              </div>
              <div>
-               <h1 className="text-xl font-extrabold tracking-tight text-slate-900 leading-none">
+               <h1 className="text-lg font-semibold tracking-tight text-slate-900 leading-none">
                  Open Source and DIY sensing systems for water management
                </h1>
-               <div className="flex items-center mt-1.5">
-                  <span className="w-2 h-2 rounded-full mr-2 bg-emerald-500 animate-pulse"></span>
-                  <p className="text-xs font-bold uppercase tracking-widest text-emerald-600">
-                    Google Sheet Synced
-                  </p>
-               </div>
              </div>
           </div>
 

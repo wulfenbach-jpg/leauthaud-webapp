@@ -4,29 +4,29 @@ const CatalogIntro: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section className="mb-8 bg-white rounded-lg border border-slate-200">
+    <section className="mb-8 bg-white rounded-xl border border-[rgba(0,0,0,0.05)] overflow-hidden shadow-[rgba(0,0,0,0.03)_0px_2px_4px]">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between px-6 py-4 text-left group"
+        className="w-full flex items-center justify-between px-6 py-5 text-left group hover:bg-[#fafafa] transition-colors"
       >
-        <h2 className="text-xs font-extrabold text-slate-900 uppercase tracking-widest">
+        <h2 className="text-[13px] font-medium text-[#0d0d0d] uppercase tracking-[0.65px]">
           About this catalog
         </h2>
         <svg
-          className={`w-4 h-4 text-slate-400 transition-transform duration-500 ease-in-out ${
+          className={`w-4 h-4 text-[#888888] transition-transform duration-500 ease-in-out ${
             isExpanded ? 'rotate-180' : ''
-          } group-hover:text-slate-600`}
+          } group-hover:text-[#666666]`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
         </svg>
       </button>
 
       <div className="relative">
         <div
-          className="px-6 space-y-3 text-sm text-slate-600 leading-relaxed font-medium overflow-hidden transition-all duration-500 ease-in-out"
+          className="px-6 space-y-3 text-[15px] text-[#333333] leading-relaxed font-normal overflow-hidden transition-all duration-500 ease-in-out"
           style={{ maxHeight: isExpanded ? '600px' : '170px' }}
         >
           <p>
@@ -62,13 +62,11 @@ const CatalogIntro: React.FC = () => {
 
         {!isExpanded && (
           <>
-            {/* Gradient fade overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-            {/* Expand button */}
-            <div className="relative px-6 pb-5 pt-4 text-center">
+            <div className="h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            <div className="relative px-6 pb-5 pt-3 text-center">
               <button
                 onClick={() => setIsExpanded(true)}
-                className="px-6 py-2 text-[10px] font-black text-emerald-600 uppercase tracking-widest hover:text-emerald-700 transition-colors rounded-md hover:bg-emerald-50"
+                className="px-6 py-2 text-[13px] font-medium text-[#18E299] uppercase tracking-[0.65px] hover:text-[#0fa76e] hover:bg-[#d4fae8] rounded-full transition-all"
               >
                 Read more
               </button>
