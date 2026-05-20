@@ -73,6 +73,17 @@ const CatalogIntro: React.FC = () => {
             </div>
           </>
         )}
+
+        {isExpanded && (
+          <div className="px-6 pb-5 pt-2 text-center">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="px-6 py-2 text-[13px] font-medium text-[#888888] uppercase tracking-[0.65px] hover:text-[#666666] hover:bg-[#f5f5f5] rounded-full transition-all"
+            >
+              Show less
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
