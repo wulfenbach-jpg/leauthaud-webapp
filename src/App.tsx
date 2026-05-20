@@ -9,6 +9,7 @@ import SidebarFilters from './components/features/SidebarFilters';
 import SolutionList from './components/features/SolutionList';
 import SolutionDetailModal from './components/features/SolutionDetailModal';
 import AboutModal from './components/features/AboutModal';
+import CatalogIntro from './components/features/CatalogIntro';
 import GoogleAnalytics from './components/common/GoogleAnalytics';
 import { useIrrigationData } from './hooks/useIrrigationData';
 import { useFilters } from './hooks/useFilters';
@@ -62,6 +63,7 @@ const App: React.FC = () => {
       />
 
       <main className="max-w-7xl mx-auto px-6 py-8">
+        <CatalogIntro />
         <div className="flex flex-col lg:flex-row gap-10">
           <SidebarFilters
             filters={filters}
