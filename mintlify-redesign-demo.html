@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leauthaud Labs — Mintlify Redesign Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --near-black: #0d0d0d;
+      --pure-white: #ffffff;
+      --brand-green: #18E299;
+      --brand-green-light: #d4fae8;
+      --brand-green-deep: #0fa76e;
+      --gray-700: #333333;
+      --gray-500: #666666;
+      --gray-400: #888888;
+      --gray-200: #e5e5e5;
+      --gray-100: #f5f5f5;
+      --gray-50: #fafafa;
+      --border-subtle: rgba(0,0,0,0.05);
+      --border-medium: rgba(0,0,0,0.08);
+      --card-shadow: rgba(0,0,0,0.03) 0px 2px 4px;
+      --max-width: 1200px;
+      --font-primary: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--pure-white);
+      color: var(--near-black);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--near-black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--near-black);
+      letter-spacing: -0.2px;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      padding: 5px 8px;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+    .header-link:hover { color: var(--brand-green); }
+
+    .btn-pill-dark {
+      background: var(--near-black);
+      color: var(--pure-white);
+      border: none;
+      padding: 8px 24px;
+      border-radius: 9999px;
+      font-family: var(--font-primary);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: rgba(0,0,0,0.06) 0px 1px 2px;
+      transition: opacity 0.2s;
+    }
+    .btn-pill-dark:hover { opacity: 0.9; }
+
+    /* ── Hero / Catalog Intro (collapsible) ── */
+    .hero-section {
+      padding: 80px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      top: -120px;
+      left: -20%;
+      right: -20%;
+      height: 500px;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(24,226,153,0.08) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 30% 40%, rgba(24,226,153,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .catalog-intro {
+      background: var(--pure-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+    }
+
+    .catalog-intro-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-primary);
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .catalog-intro-header:hover { background: var(--gray-50); }
+
+    .catalog-intro-header h2 {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.65px;
+      color: var(--near-black);
+    }
+
+    .catalog-intro-header .chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--gray-400);
+      transition: transform 0.5s ease-in-out;
+    }
+    .catalog-intro-header .chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .catalog-intro-body {
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+    }
+
+    .catalog-intro-text {
+      padding: 0 24px 8px;
+    }
+
+    .catalog-intro-text p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .catalog-intro-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .catalog-intro-footer {
+      position: relative;
+      padding: 0 24px 20px;
+      text-align: center;
+    }
+
+    .gradient-fade {
+      height: 48px;
+      background: linear-gradient(to top, var(--pure-white), transparent);
+      pointer-events: none;
+      margin-bottom: -8px;
+    }
+
+    .btn-read-more {
+      background: none;
+      border: none;
+      font-family: var(--font-primary);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--brand-green);
+      cursor: pointer;
+      padding: 10px 24px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.65px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-read-more:hover {
+      background: var(--brand-green-light);
+      color: var(--brand-green-deep);
+    }
+
+    /* ── Filter / Catalog Layout ── */
+    .catalog-layout {
+      display: flex;
+      gap: 40px;
+      padding-bottom: 64px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.65px;
+      color: var(--near-black);
+      margin-bottom: 20px;
+    }
+
+    .filter-group {
+      margin-bottom: 24px;
+    }
+
+    .filter-group h4 {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray-500);
+      margin-bottom: 10px;
+      font-family: var(--font-mono);
+    }
+
+    .filter-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--gray-700);
+      padding: 4px 0;
+      cursor: pointer;
+      font-weight: 400;
+    }
+
+    .filter-group input[type="checkbox"] {
+      accent-color: var(--brand-green);
+      width: 14px;
+      height: 14px;
+    }
+
+    .btn-reset {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--brand-green);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      transition: background 0.2s;
+    }
+    .btn-reset:hover { background: var(--brand-green-light); }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .catalog-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray-400);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .catalog-meta strong {
+      color: var(--near-black);
+      font-weight: 600;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* ── Cards ── */
+    .solution-card {
+      background: var(--pure-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .solution-card:hover {
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .card-badge-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: var(--brand-green-light);
+      color: var(--brand-green-deep);
+    }
+
+    .badge-tech {
+      background: var(--gray-100);
+      color: var(--gray-500);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--near-black);
+      letter-spacing: -0.2px;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray-500);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    .card-footer .price {
+      color: var(--near-black);
+      font-weight: 600;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 48px 0;
+    }
+
+    .site-footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--near-black);
+      font-weight: 500;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--gray-400);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      line-height: 1.6;
+      color: var(--gray-400);
+      max-width: 600px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      margin-top: 8px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--brand-green); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .catalog-layout {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .hero-section {
+        padding: 40px 0 24px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Demo label */
+    .demo-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: var(--near-black);
+      color: var(--pure-white);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      z-index: 100;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-left">
+        <div class="brand-icon">LL</div>
+        <div>
+          <div class="brand-name">Leauthaud Labs</div>
+          <div class="brand-sub">Open Source Irrigation Catalog</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="#" class="header-link">Catalog</a>
+        <a href="#" class="header-link">About</a>
+        <button class="btn-pill-dark">Browse systems</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Hero + Collapsible Intro ── -->
+  <section class="hero-section">
+    <div class="hero-gradient"></div>
+    <div class="container hero-content">
+      <div class="catalog-intro">
+        <button class="catalog-intro-header" onclick="toggleIntro()">
+          <h2>About this catalog</h2>
+          <svg class="chevron" id="introChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+
+        <div class="catalog-intro-body" id="introBody" style="max-height: 175px;">
+          <div class="catalog-intro-text">
+            <p>Are you looking for a non-proprietary and open source system for your water management needs? This dataset describes a collection of existing automatic irrigation systems, ranging from home and garden setups to small scale farms. It is meant for the general public, including gardeners, farmers, or anyone interested in learning about available Do-It-Yourself and open-source water efficiency technologies.</p>
+            <p>You can use this page to compare systems that have been developed and find options that best fit your needs, space, and technical skills. You can filter results according to criteria such as technologies involved, irrigation type, scale of use, and level of advancement.</p>
+            <p>Each entry includes a short description of the system, main components, scale of use, cost if available, as well as other characteristics of the system. It is also noted if coding is required, what sensors are used, and when the source was last updated. Images and source links are included so users can explore each system further.</p>
+            <p>Many systems share similar features such as a control board (Arduino or Raspberry Pi) and sensors like soil moisture or weather data which improve efficiency. Differences between systems include cost, complexity, and scale.</p>
+            <p>We will update this database on a yearly basis. If you know of any other non-proprietary and open source automated irrigation system, please contact us and we will add it to our database!</p>
+          </div>
+        </div>
+
+        <div class="catalog-intro-footer" id="introFooter">
+          <div class="gradient-fade"></div>
+          <button class="btn-read-more" onclick="expandIntro()">Read more</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Catalog Layout ── -->
+  <div class="container">
+    <div class="catalog-layout">
+
+      <!-- Sidebar Filters -->
+      <aside class="sidebar">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <h3 class="sidebar-title" style="margin-bottom:0;">Research Criteria</h3>
+          <button class="btn-reset">Reset</button>
+        </div>
+
+        <div class="filter-group">
+          <h4>Digital Technologies</h4>
+          <label><input type="checkbox"> Remote sensing</label>
+          <label><input type="checkbox"> AI</label>
+          <label><input type="checkbox"> IoT</label>
+          <label><input type="checkbox"> Big Data</label>
+          <label><input type="checkbox"> Smart Sensors</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Irrigation Type</h4>
+          <label><input type="checkbox"> Drip</label>
+          <label><input type="checkbox"> Sprinkler</label>
+          <label><input type="checkbox"> Surface</label>
+        </div>
+
+        <div class="filter-group">
+          <h4>Scale of Use</h4>
+          <label><input type="checkbox"> Pot</label>
+          <label><input type="checkbox"> Garden</label>
+          <label><input type="checkbox"> Farm</label>
+        </div>
+      </aside>
+
+      <!-- Main Catalog -->
+      <main class="main-content">
+        <div class="catalog-meta">
+          Displaying <strong>6</strong> verified entries
+        </div>
+
+        <div class="card-grid">
+
+          <!-- Card 1 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge">IoT</span>
+              <span class="badge badge-tech">Arduino</span>
+              <span class="badge badge-tech">Drip</span>
+            </div>
+            <h3 class="card-title">SmartDrip Controller</h3>
+            <p class="card-desc">Automated drip irrigation system using soil moisture sensors and weather data. Suitable for garden-scale deployment.</p>
+            <div class="card-footer">
+              <span>Garden</span>
+              <span class="price">$120–180</span>
+              <span>v2.4</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge">AI</span>
+              <span class="badge badge-tech">Raspberry Pi</span>
+              <span class="badge badge-tech">Sprinkler</span>
+            </div>
+            <h3 class="card-title">FieldSense AI</h3>
+            <p class="card-desc">Machine learning-based precision irrigation with camera-based plant stress detection for small farms.</p>
+            <div class="card-footer">
+              <span>Farm</span>
+              <span class="price">$400–650</span>
+              <span>v1.8</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge badge-tech">ESP32</span>
+              <span class="badge badge-tech">Drip</span>
+            </div>
+            <h3 class="card-title">HydroNode Mini</h3>
+            <p class="card-desc">Low-cost ESP32-based dripper with capacitive moisture sensing and MQTT reporting for home gardens.</p>
+            <div class="card-footer">
+              <span>Pot</span>
+              <span class="price">$35–60</span>
+              <span>v3.1</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge badge-tech">LoRa</span>
+              <span class="badge badge-tech">Arduino</span>
+              <span class="badge">IoT</span>
+            </div>
+            <h3 class="card-title">LoRaWAN Valve Array</h3>
+            <p class="card-desc">Long-range wireless valve control for distributed irrigation zones with centralized dashboard.</p>
+            <div class="card-footer">
+              <span>Farm</span>
+              <span class="price">$800–1,200</span>
+              <span>v1.2</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge badge-tech">Raspberry Pi</span>
+              <span class="badge badge-tech">Surface</span>
+            </div>
+            <h3 class="card-title">OpenFlood</h3>
+            <p class="card-desc">Surface irrigation automation with flow sensors and solenoid actuators for row crops.</p>
+            <div class="card-footer">
+              <span>Farm</span>
+              <span class="price">$250–400</span>
+              <span>v0.9</span>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="solution-card">
+            <div class="card-badge-row">
+              <span class="badge badge-tech">ESP8266</span>
+              <span class="badge">DIY</span>
+            </div>
+            <h3 class="card-title">PicoWater</h3>
+            <p class="card-desc">Ultra-low-cost plant watering timer with capacitive touch interface and USB power.</p>
+            <div class="card-footer">
+              <span>Pot</span>
+              <span class="price">$15–25</span>
+              <span>v5.0</span>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">Leauthaud Labs 2025</div>
+      <div class="footer-tagline">Open Source and DIY sensing systems for water management</div>
+      <div class="footer-disclaimer">The inclusion of any brand name or photo is purely descriptive and should not be considered as an endorsement. We compiled this information from online sources, and this database is provided for information only, and you can seek advice directly from the team that developed each technology.</div>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="https://sites.google.com/site/leauthaud/">Leauthaud Lab</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="demo-badge">Mintlify Design · Demo</div>
+
+  <script>
+    function toggleIntro() {
+      const body = document.getElementById('introBody');
+      const footer = document.getElementById('introFooter');
+      const chevron = document.getElementById('introChevron');
+      const isOpen = body.style.maxHeight !== '175px';
+
+      if (isOpen) {
+        body.style.maxHeight = '175px';
+        footer.style.display = '';
+        chevron.classList.remove('open');
+      } else {
+        body.style.maxHeight = '800px';
+        footer.style.display = 'none';
+        chevron.classList.add('open');
+      }
+    }
+
+    function expandIntro() {
+      const body = document.getElementById('introBody');
+      const footer = document.getElementById('introFooter');
+      const chevron = document.getElementById('introChevron');
+      body.style.maxHeight = '800px';
+      footer.style.display = 'none';
+      chevron.classList.add('open');
+    }
+  </script>
+</body>
+</html>
