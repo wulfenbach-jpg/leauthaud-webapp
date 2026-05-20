@@ -8,7 +8,6 @@ import ErrorMessage from './components/common/ErrorMessage';
 import SidebarFilters from './components/features/SidebarFilters';
 import SolutionList from './components/features/SolutionList';
 import SolutionDetailModal from './components/features/SolutionDetailModal';
-import AboutModal from './components/features/AboutModal';
 import CatalogIntro from './components/features/CatalogIntro';
 import GoogleAnalytics from './components/common/GoogleAnalytics';
 import { useIrrigationData } from './hooks/useIrrigationData';
@@ -19,7 +18,6 @@ const App: React.FC = () => {
   const { solutions, isLoading, error } = useIrrigationData();
   const { filters, toggleFilter, clearFilters, setSearchQuery } = useFilters();
   const [selectedSolution, setSelectedSolution] = useState<IrrigationSolution | null>(null);
-  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
 
   const filteredSolutions = useMemo(() => {
     return solutions.filter(solution => {
@@ -59,7 +57,6 @@ const App: React.FC = () => {
       <Header
         searchQuery={filters.searchQuery}
         onSearchChange={setSearchQuery}
-        onOpenAbout={() => setIsAboutModalOpen(true)}
       />
 
       <main className="max-w-7xl mx-auto px-6 py-8">
@@ -79,7 +76,6 @@ const App: React.FC = () => {
       </main>
 
       <SolutionDetailModal solution={selectedSolution} onClose={() => setSelectedSolution(null)} />
-      <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} />
       <Footer />
     </div>
   );

@@ -13,7 +13,7 @@ const CatalogIntro: React.FC = () => {
           About this catalog
         </h2>
         <svg
-          className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+          className={`w-4 h-4 text-slate-400 transition-transform duration-500 ease-in-out ${
             isExpanded ? 'rotate-180' : ''
           } group-hover:text-slate-600`}
           fill="none"
@@ -26,9 +26,8 @@ const CatalogIntro: React.FC = () => {
 
       <div className="relative">
         <div
-          className={`px-6 pb-5 space-y-3 text-sm text-slate-600 leading-relaxed font-medium ${
-            !isExpanded ? 'max-h-44 overflow-hidden' : ''
-          }`}
+          className="px-6 space-y-3 text-sm text-slate-600 leading-relaxed font-medium overflow-hidden transition-all duration-500 ease-in-out"
+          style={{ maxHeight: isExpanded ? '600px' : '170px' }}
         >
           <p>
             Are you looking for a non-proprietary and open source system for your water management
@@ -64,12 +63,12 @@ const CatalogIntro: React.FC = () => {
         {!isExpanded && (
           <>
             {/* Gradient fade overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
             {/* Expand button */}
-            <div className="relative px-6 pb-4 text-center -mt-2">
+            <div className="relative px-6 pb-5 pt-4 text-center">
               <button
                 onClick={() => setIsExpanded(true)}
-                className="text-[10px] font-black text-emerald-600 uppercase tracking-widest hover:text-emerald-700 transition-colors"
+                className="px-6 py-2 text-[10px] font-black text-emerald-600 uppercase tracking-widest hover:text-emerald-700 transition-colors rounded-md hover:bg-emerald-50"
               >
                 Read more
               </button>
