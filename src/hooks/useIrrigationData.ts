@@ -8,20 +8,32 @@ export const useIrrigationData = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    let cancelled = false;
+
     const loadData = async () => {
       try {
         setIsLoading(true);
         const data = await fetchSheetData();
-        setSolutions(data);
-        setError(null);
+        if (!cancelled) {
+          setSolutions(data);
+          setError(null);
+        }
       } catch (err) {
-        console.error("Data loading error:", err);
-        setError("Failed to load data. Please ensure the Google Sheet is 'Published to the web' (File > Share > Publish to web) and that you are using a local web server.");
+        if (!cancelled) {
+          console.error("Data loading error:", err);
+          setError("Failed to load data. Please ensure the Google Sheet is 'Published to the web' (File > Share > Publish to web) and that you are using a local web server.");
+        }
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     };
     loadData();
+
+    return () => {
+      cancelled = true;
+      abortController.abort();
+    };
   }, []);
 
   return { solutions, isLoading, error };

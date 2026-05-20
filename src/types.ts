@@ -1,4 +1,3 @@
-
 export interface IrrigationSolution {
   id: string;
   name: string;

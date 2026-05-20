@@ -1,6 +1,6 @@
-import Papa, { ParseError, ParseResult } from 'papaparse';
-import { IrrigationSolution } from '../types.ts';
-import { getCsvUrl } from '../constants.tsx';
+import Papa, { ParseResult } from 'papaparse';
+import { IrrigationSolution } from '../types';
+import { getCsvUrl } from '../constants';
 
 // 1. Define an interface for the raw CSV row to avoid 'any'
 interface RawCsvRow {
