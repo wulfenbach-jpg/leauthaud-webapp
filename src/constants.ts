@@ -7,6 +7,9 @@ import { IrrigationSolution } from './types';
 export const getCsvUrl = () => 
   `https://docs.google.com/spreadsheets/d/e/2PACX-1vQ9tMcmVf75Ufi9ZvICzQl4IcbQVU6ri732gXoxgk27RY_v3HU-EPKff7kd0XoK8w/pub?gid=1106095519&single=true&output=csv`;
 
+/** Configurable timeout in ms before the browsing modal shows */
+export const TIMEOUT_MODAL_DELAY_MS = 60_000;
+
 export const FILTER_OPTIONS = {
   digitalTechnologies: [
     'Remote sensing', 'AI', 'IoT', 'Big Data', 'Robotics', 
