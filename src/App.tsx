@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { IrrigationSolution } from './types';
 import Header from './components/layout/Header';
@@ -10,11 +10,19 @@ import SolutionList from './components/features/SolutionList';
 import SolutionDetailModal from './components/features/SolutionDetailModal';
 import CatalogIntro from './components/features/CatalogIntro';
 import GoogleAnalytics from './components/common/GoogleAnalytics';
+import TimeoutModal from './components/features/TimeoutModal';
+import { TIMEOUT_MODAL_DELAY_MS } from './constants';
 import { useIrrigationData } from './hooks/useIrrigationData';
 import { useFilters } from './hooks/useFilters';
 import { matchInString, matchInArray } from './utils/filterUtils';
 
 const App: React.FC = () => {
+  const [showTimeoutModal, setShowTimeoutModal] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowTimeoutModal(true), TIMEOUT_MODAL_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
   const { solutions, isLoading, error } = useIrrigationData();
   const { filters, toggleFilter, clearFilters, setSearchQuery } = useFilters();
   const [selectedSolution, setSelectedSolution] = useState<IrrigationSolution | null>(null);
@@ -76,6 +84,7 @@ const App: React.FC = () => {
       </main>
 
       <SolutionDetailModal solution={selectedSolution} onClose={() => setSelectedSolution(null)} />
+      <TimeoutModal isOpen={showTimeoutModal} onClose={() => setShowTimeoutModal(false)} />
       <Footer />
     </div>
   );
