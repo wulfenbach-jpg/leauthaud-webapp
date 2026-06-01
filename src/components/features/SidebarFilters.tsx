@@ -10,15 +10,15 @@ interface SidebarFiltersProps {
 
 const SidebarFilters: React.FC<SidebarFiltersProps> = ({ filters, onToggleFilter, onClearFilters }) => {
   const filterCategories = [
-    { label: 'Digital Technologies', key: 'digitalTechnologies', options: FILTER_OPTIONS.digitalTechnologies },
     { label: 'Irrigation Type', key: 'typeOfIrrigation', options: FILTER_OPTIONS.typeOfIrrigation },
     { label: 'Scale of Use', key: 'scaleOfUse', options: FILTER_OPTIONS.scaleOfUse },
-    { label: 'Tech Advancement', key: 'techAdvancement', options: FILTER_OPTIONS.techAdvancement },
-    { label: 'Developer Class', key: 'developer', options: FILTER_OPTIONS.developer },
+    { label: 'Price Range', key: 'priceRange', options: FILTER_OPTIONS.priceRange },
     { label: 'Documentation Type', key: 'documentationType', options: FILTER_OPTIONS.documentationType },
     { label: 'Document Content', key: 'documentContent', options: FILTER_OPTIONS.documentContent },
+    { label: 'Tech Advancement', key: 'techAdvancement', options: FILTER_OPTIONS.techAdvancement },
+    { label: 'Developer Class', key: 'developer', options: FILTER_OPTIONS.developer },
+    { label: 'Digital Technologies', key: 'digitalTechnologies', options: FILTER_OPTIONS.digitalTechnologies },
     { label: 'Type of Board', key: 'typeOfBoard', options: FILTER_OPTIONS.typeOfBoard },
-    { label: 'Price Range', key: 'priceRange', options: FILTER_OPTIONS.priceRange },
   ];
 
   return (
